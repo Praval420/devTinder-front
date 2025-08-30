@@ -1,22 +1,29 @@
 import { useState } from 'react'
 import './index.css'
-import Navbar from './navbar.jsx'
+import Navbar from './components/navbar.jsx'
 import { BrowserRouter, Routes,Route } from 'react-router-dom'
-import Body from './body.jsx'
+import Body from './components/body.jsx'
+import Login from './components/login.jsx'
+import Feed from './components/feed.jsx'
+import { Provider } from 'react-redux'
+import appStore from './utils/appstore.js'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>  
-    <BrowserRouter basename='/'>
-      <Routes>
-         <Route path="/" element={<Body/>}>
-          <Route path="/login" element={<div>login page</div>}></Route>
-          <Route path="/profile" element={<div>profile page</div>}></Route>
-         </Route>
-        
-      </Routes>
-    </BrowserRouter>
+      <Provider store={appStore}>
+        <BrowserRouter basename='/'>
+          <Routes>
+            <Route path="/" element={<Body/>}>
+              <Route path="/" element={<Feed/>}></Route>
+              <Route path="/login" element={<Login/>}></Route>
+              <Route path="/profile" element={<div>profile page</div>}></Route>
+            </Route>
+            
+          </Routes>
+        </BrowserRouter>
+      </Provider>
       
     </>
   )
