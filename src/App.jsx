@@ -7,6 +7,7 @@ import Login from './components/login.jsx'
 import Feed from './components/feed.jsx'
 import { Provider } from 'react-redux'
 import appStore from './utils/appstore.js'
+import Profile from './components/profile.jsx'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -18,7 +19,7 @@ function App() {
             <Route path="/" element={<Body/>}>
               <Route path="/" element={<Feed/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
-              <Route path="/profile" element={<div>profile page</div>}></Route>
+              <Route path="/profile" element={<Profile/>}></Route>
             </Route>
             
           </Routes>

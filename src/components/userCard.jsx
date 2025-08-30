@@ -1,7 +1,7 @@
 const UserCard=({user})=>{
     return <>
-    <div className="min-h-screen flex items-start justify-center bg-gradient-to-r from-purple via-pink-500 to-red p-6">
-  <div className="bg-white rounded-xl shadow-lg  mt-5 max-w-sm w-full overflow-hidden">
+    <div className="min-h-screen flex items-start justify-center bg-gradient-to-r from-purple via-pink-500 to-red p-2">
+  <div className="bg-white rounded-xl mt-4 shadow-lg h-130  max-w-sm w-full overflow-hidden">
     <img
       className="w-full h-64 object-cover "
       src={user.photoURL}
@@ -17,6 +17,9 @@ const UserCard=({user})=>{
       </p>
       <p className="text-gray-600 mb-4">
         <span className="font-semibold">Skills: </span> React, Node.js, Tailwind CSS
+      </p>
+      <p className="text-gray-600 mb-4">
+        <span className="font-semibold">About: </span> React, Node.js, Tailwind CSS
       </p>
       <div className="flex justify-between">
         <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
