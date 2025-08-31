@@ -11,6 +11,7 @@ const Navbar=()=>{
       try{
         await axios.post(BASE_URL+"/logout",{withCredentials:true});
         dispatch(removeUser());
+         localStorage.removeItem("token");
         return navigate("/login")
       }catch(err){
         console.log(err);
@@ -44,6 +45,7 @@ return <>
           </Link>
         </li>
         <li><Link to="/connections">Connections</Link></li>
+        <li><Link to="/requests">Requests</Link></li>
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div>
