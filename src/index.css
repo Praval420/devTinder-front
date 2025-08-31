@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
-body{
+/* body{
   overflow: hidden;
-}
-#root{
+} */
+/* #root{
   background-color:rgb(41, 36, 71);
-}
+} */
