@@ -11,7 +11,6 @@ const Navbar=()=>{
       try{
         await axios.post(BASE_URL+"/logout",{withCredentials:true});
         dispatch(removeUser());
-         localStorage.removeItem("token");
         return navigate("/login")
       }catch(err){
         console.log(err);

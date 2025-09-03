@@ -5,30 +5,43 @@ import { BASE_URL } from "../constants/const";
 import { useEffect } from "react";
 import { addFeed } from "../utils/feedSlice";
 
-const Feed=()=>{
-    const dispatch=useDispatch();
-    const choose=useSelector((store)=>store.feed);
+const Feed = () => {
+  const dispatch = useDispatch();
+  const choose = useSelector((store) => store.feed);
 
-    const getUsers= async ()=>{
-        try{
-        const users=await axios.get(BASE_URL+"/feed",{withCredentials:true});
-        dispatch(addFeed(users.data));
-        }catch(err){
-            //to do
-        }
+  const getUsers = async () => {
+    try {
+      const users = await axios.get(BASE_URL + "/feed", { withCredentials: true });
+      dispatch(addFeed(users.data));
+    } catch (err) {
+      // Handle error appropriately
     }
-    // console.log(choose);
+  };
 
-    useEffect(()=>{
-        if(!choose){
-            getUsers();
-        }
-    })
-return <>
-  {Array.isArray(choose) && choose.length > 0 && (
-      <UserCard user={choose[0]}/>
-    )}
-</>
-}
+  useEffect(() => {
+    if (!choose) {
+      getUsers();
+    }
+  }, [choose]);
+
+  return (
+    <>
+      {Array.isArray(choose) && choose.length > 0 ? (
+        <UserCard user={choose[0]} />
+      ) : Array.isArray(choose) && choose.length === 0 ? (
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "20vh",
+            fontSize: "1.5rem",
+            color: "#ffffffff",
+          }}
+        >
+          No more users
+        </div>
+      ) : null}
+    </>
+  );
+};
 
 export default Feed;

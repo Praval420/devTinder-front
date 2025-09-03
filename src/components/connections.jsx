@@ -14,10 +14,11 @@ const Connections = () => {
   };
 
   useEffect(() => {
-    if (!store) {
-      handleConnections();
+    if(!store){
+        handleConnections();
     }
-  }, []);
+      
+  }, );
 
   return (
     <>

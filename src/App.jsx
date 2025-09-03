@@ -10,6 +10,7 @@ import appStore from './utils/appstore.js'
 import Profile from './components/profile.jsx'
 import Connections from './components/connections.jsx'
 import Request from './components/requests.jsx'
+import Signup from './components/signup.jsx'
 function App() {
   return (
     <>  
@@ -22,6 +23,7 @@ function App() {
               <Route path="/profile" element={<Profile/>}></Route>
                <Route path="/connections" element={<Connections/>}></Route>
                <Route path="/requests" element={<Request/>}></Route>
+               <Route path="/signup" element={<Signup/>}></Route>
             </Route>
             
           </Routes>

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { data, useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
+import { Link } from "react-router-dom";
+import { BASE_URL } from "../constants/const";
 
 const Login=()=>{
         const [error,setError]=useState("");
@@ -13,7 +15,7 @@ const Login=()=>{
        const handleLogin = async (e) => {
          e.preventDefault(); 
         try{
-  const res=await axios.post("http://localhost:7777/login", {
+  const res=await axios.post(BASE_URL+"/login", {
       emailId: emailId,      // your email state variabl
       password: password   // your password state variable
     },{withCredentials:true});
@@ -98,9 +100,9 @@ catch(err){
 
           <p className="mt-10 text-center text-sm/6 text-gray-400">
             Not a member?{' '}
-            <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
+            <Link to='/signup' className="font-semibold text-indigo-400 hover:text-indigo-300">
               Register
-            </a>
+            </Link>
           </p>
         </div>
       </div>
