@@ -11,6 +11,44 @@ import Profile from './components/profile.jsx'
 import Connections from './components/connections.jsx'
 import Request from './components/requests.jsx'
 import Signup from './components/signup.jsx'
+import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react';
+
+function PrivacyRedirect() {
+  useEffect(() => {
+    window.location.href = 'https://razorpay.com/privacy-policy/';
+  }, []);
+
+  return <p>Redirecting...</p>;
+}
+function TermsRedirect() {
+  useEffect(() => {
+    window.location.href = 'https://razorpay.com/tnc/';
+  }, []);
+
+  return <p>Redirecting...</p>;
+}
+function ContactRedirect() {
+  useEffect(() => {
+    window.location.href = 'https://razorpay.com/contact/';
+  }, []);
+
+  return <p>Redirecting...</p>;
+}
+function RefundRedirect() {
+  useEffect(() => {
+    window.location.href = 'https://razorpay.com/refund-policy/';
+  }, []);
+
+  return <p>Redirecting...</p>;
+}
+function ShippingRedirect() {
+  useEffect(() => {
+    window.location.href = 'https://razorpay.com/shipping-policy/';
+  }, []);
+
+  return <p>Redirecting...</p>;
+}
 function App() {
   return (
     <>  
@@ -24,6 +62,13 @@ function App() {
                <Route path="/connections" element={<Connections/>}></Route>
                <Route path="/requests" element={<Request/>}></Route>
                <Route path="/signup" element={<Signup/>}></Route>
+              <Route path="/privacy" element={<PrivacyRedirect />} />
+              <Route path="/terms" element={<TermsRedirect />} />
+              <Route path="/contact" element={<ContactRedirect/>} />
+              <Route path="/refund" element={<RefundRedirect/>} />
+              <Route path="/shipping" element={<ShippingRedirect/>} />
+
+
             </Route>
             
           </Routes>
