@@ -13,6 +13,7 @@ import Request from './components/requests.jsx'
 import Signup from './components/signup.jsx'
 import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react';
+import Premium from './components/Premium.jsx'
 
 function PrivacyRedirect() {
   useEffect(() => {
@@ -67,6 +68,7 @@ function App() {
               <Route path="/contact" element={<ContactRedirect/>} />
               <Route path="/refund" element={<RefundRedirect/>} />
               <Route path="/shipping" element={<ShippingRedirect/>} />
+              <Route path="/premium" element={<Premium/>} />
 
 
             </Route>
