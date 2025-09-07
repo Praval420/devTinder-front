@@ -34,7 +34,7 @@ const Body=()=>{
 return <>
     <Navbar/>
     <Outlet/>
-    <Footer/>
+    {/* <Footer/> */}
 </>
 }
 
