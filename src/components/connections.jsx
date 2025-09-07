@@ -21,11 +21,11 @@ const Connections = () => {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen w-full bg-gradient-to-br from-indigo-900 to-blue-800 flex flex-col">
       {store && (
         <>
-          <h1 className="fz-10 text-center text-4xl p-2 text-white">Connections</h1>
-          <ul className=" rounded-xl shadow-lg flex flex-col items-center w-full max-w-lg mx-auto p-4 mb-8">
+          <h1 className="fz-10 text-center text-4xl p-6 text-white">Connections</h1>
+          <ul className="rounded-xl shadow-lg flex flex-col items-center w-full max-w-lg mx-auto p-4 mb-8 flex-grow overflow-auto">
             {store.map((z, index) => {
               const { firstName, lastName, about, age, gender, photoURL } = z;
               return (
@@ -41,9 +41,11 @@ const Connections = () => {
                     <div className="text-xs font-medium opacity-75">Gender : {gender}</div>
                   </div>
                   <div>
-                    <Link to={"/chat/"+z._id}><button className="btn bg-gradient-to-r from-pink-500 to-pink-400 border-2 border-pink-700 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-transform hover:scale-105">
-                      Chat
-                    </button></Link>
+                    <Link to={"/chat/" + z._id}>
+                      <button className="btn bg-gradient-to-r from-pink-500 to-pink-400 border-2 border-pink-700 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-transform hover:scale-105">
+                        Chat
+                      </button>
+                    </Link>
                   </div>
                 </li>
               );
@@ -51,7 +53,7 @@ const Connections = () => {
           </ul>
         </>
       )}
-    </>
+    </div>
   );
 };
 

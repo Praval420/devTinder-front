@@ -26,6 +26,7 @@ const Feed = () => {
 
   return (
     <>
+    <div className="min-h-screen bg-gradient-to-r from-indigo via-pink-500 to-red flex items-start justify-center p-2">
       {Array.isArray(choose) && choose.length > 0 ? (
         <UserCard user={choose[0]} />
       ) : Array.isArray(choose) && choose.length === 0 ? (
@@ -40,6 +41,7 @@ const Feed = () => {
           No more users
         </div>
       ) : null}
+    </div>
     </>
   );
 };

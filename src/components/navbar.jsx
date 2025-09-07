@@ -15,21 +15,19 @@ const Navbar=()=>{
       }catch(err){
         console.log(err);
       }
-
     }
 return <>
-  <div className="navbar bg-white shadow-sm">
+  <div className="navbar bg-white/80 backdrop-blur shadow-md">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-black text-xl">DevTinder</Link>
+    <Link to="/" className="btn btn-ghost text-indigo-900 text-xl font-bold">DevTinder</Link>
   </div>
   {user && <div className="flex gap-2">
     <div className="dropdown dropdown-end flex">
       <div>
-          <p className="text-black px-4 mt-2">Welcome, {user.firstName}</p>
+          <p className="text-indigo-900 px-4 mt-2 font-medium">Welcome, {user.firstName}</p>
         </div>
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        
-        <div className="w-10 rounded-full">
+        <div className="w-10 rounded-full border-2 border-indigo-400 shadow">
           <img
             alt="Tailwind CSS Navbar component"
             src={user.photoURL} />
@@ -37,9 +35,9 @@ return <>
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content bg-white/95 text-indigo-900 rounded-box z-1 mt-3 w-52 p-2 shadow-lg">
         <li>
-          <Link to="/profile" className="justify-between">
+          <Link to="/profile" className="justify-between font-medium">
             Profile
           </Link>
         </li>

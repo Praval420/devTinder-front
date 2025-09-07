@@ -33,7 +33,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center mt-15">
+    <div className="flex justify-center min-h-screen items-center bg-gradient-to-b from-blue-900 to-blue-800 p-5">
       <form
         className="flex flex-col gap-2.5 max-w-[350px] p-5 rounded-2xl relative bg-[#1a1a1a] text-white border border-[#333] font-sans"
         onSubmit={handleSignup}
