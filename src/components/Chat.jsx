@@ -11,6 +11,7 @@ const Chat = () => {
   const user = useSelector((store) => store.user);
   const userId = user?._id;
   const [input, setInput] = useState("");
+  const [socketReady, setSocketReady] = useState(false); // For button disable
   const messagesEndRef = useRef(null);
   const socketRef = useRef(null);
   const firstName = user?.firstName;
@@ -37,13 +38,18 @@ const Chat = () => {
 
   useEffect(() => {
     fetchMessages();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     const socket = createSocketConnection();
-    socket.emit("joinChat", { userId, targetUserId, firstName, lastName });
+    socketRef.current = socket;
 
-    // Use senderId from incoming message, do not fallback to current userId
+    socket.on("connect", () => {
+      setSocketReady(true);
+      socket.emit("joinChat", { userId, targetUserId, firstName, lastName });
+    });
+
     socket.on("messageReceived", ({ text, firstName, lastName, senderId }) => {
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -51,12 +57,10 @@ const Chat = () => {
           id: Date.now(),
           text,
           sender: `${firstName} ${lastName}`,
-          senderId,  // Correct senderId from server
+          senderId, // Correct sender
         },
       ]);
     });
-
-    socketRef.current = socket;
 
     return () => {
       socket.disconnect();
@@ -68,7 +72,7 @@ const Chat = () => {
   }, [messages]);
 
   const sendMessage = () => {
-    if (!input.trim()) return;
+    if (!input.trim() || !socketRef.current) return;
     socketRef.current.emit("sendMessage", { userId, targetUserId, text: input, firstName, lastName });
     setInput("");
   };
@@ -102,14 +106,16 @@ const Chat = () => {
         >
           <input
             type="text"
-            placeholder="Type your message..."
+            placeholder={socketReady ? "Type your message..." : "Connecting..."}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 border border-indigo-700 rounded-full px-4 py-2 bg-green-900 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            disabled={!socketReady}
           />
           <button
             type="submit"
             className="ml-3 bg-green-500 text-white font-semibold px-5 py-2 rounded-full hover:bg-indigo-700 transition-colors"
+            disabled={!socketReady}
           >
             Send
           </button>
