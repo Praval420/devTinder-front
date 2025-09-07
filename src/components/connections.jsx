@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../constants/const";
 import { addConnections } from "../utils/connectionsSlice";
+import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -14,31 +15,35 @@ const Connections = () => {
   };
 
   useEffect(() => {
-    if(!store){
-        handleConnections();
+    if (!store) {
+      handleConnections();
     }
-      
-  }, );
+  }, []);
 
   return (
     <>
       {store && (
         <>
-          <h1 className="fz-10 text-center text-4xl p-2">Connections</h1>
-          <ul className="list bg-base-100 rounded-box shadow-md flex flex-col items-center w-full max-w-lg mx-auto p-4 mb-8">
+          <h1 className="fz-10 text-center text-4xl p-2 text-white">Connections</h1>
+          <ul className=" rounded-xl shadow-lg flex flex-col items-center w-full max-w-lg mx-auto p-4 mb-8">
             {store.map((z, index) => {
               const { firstName, lastName, about, age, gender, photoURL } = z;
               return (
                 <li
                   key={index}
-                  className="list-row w-full max-w-md mx-auto mb-4 flex items-center bg-indigo-700 gap-4 rounded-box p-4 shadow-sm"
+                  className="relative w-full max-w-md mx-auto mb-6 flex items-center bg-gradient-to-r from-indigo-700 to-blue-600 border-l-4 border-teal-300 gap-4 rounded-2xl p-5 shadow-lg"
                 >
-                  <div className="text-4xl font-thin opacity-50 text-white tabular-nums">{index + 1}</div>
-                  <img className="size-10 rounded-box" src={photoURL} alt={`${firstName} ${lastName}`} />
-                  <div className="flex-1">
-                    <div>{firstName} {lastName}</div>
-                    <div className="text-xs  font-semibold opacity-70">Age : {age}</div>
-                    <div className="text-xs  font-semibold opacity-70">Gender : {gender}</div>
+                  <div className="text-3xl font-bold text-white opacity-50 tabular-nums mr-3">{index + 1}</div>
+                  <img className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md" src={photoURL} alt={`${firstName} ${lastName}`} />
+                  <div className="flex-1 text-white">
+                    <div className="font-semibold">{firstName} {lastName}</div>
+                    <div className="text-xs font-medium opacity-75">Age : {age}</div>
+                    <div className="text-xs font-medium opacity-75">Gender : {gender}</div>
+                  </div>
+                  <div>
+                    <Link to={"/chat/"+z._id}><button className="btn bg-gradient-to-r from-pink-500 to-pink-400 border-2 border-pink-700 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-transform hover:scale-105">
+                      Chat
+                    </button></Link>
                   </div>
                 </li>
               );

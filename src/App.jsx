@@ -14,6 +14,7 @@ import Signup from './components/signup.jsx'
 import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import Premium from './components/Premium.jsx'
+import Chat from './components/Chat.jsx'
 
 function PrivacyRedirect() {
   useEffect(() => {
@@ -69,8 +70,7 @@ function App() {
               <Route path="/refund" element={<RefundRedirect/>} />
               <Route path="/shipping" element={<ShippingRedirect/>} />
               <Route path="/premium" element={<Premium/>} />
-
-
+              <Route path="/chat/:targetUserId" element={<Chat/>}/>
             </Route>
             
           </Routes>
